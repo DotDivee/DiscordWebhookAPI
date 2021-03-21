@@ -41,5 +41,6 @@ builder.addEmbed(
     .build()
 )
 
+# Converts Builder Object To A DiscordWebhook Object And Runs
 builder.build().send()
 ```
