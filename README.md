@@ -44,6 +44,7 @@ builder.addEmbed(
         Footer.Builder()
         .setText("TEXT")
         .setIconURL("http://YOUR.ICONURL")
+        .build()
     )
     .build()
 )
