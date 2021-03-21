@@ -1,4 +1,4 @@
-from discord_webhook import DiscordWebhook, Embed, Author, Footer
+from discord_webhook import DiscordWebhook, Embed, Author, Field, Footer
 
 # Initializing The Webhook Builder Object
 builder = DiscordWebhook.Builder("WEBHOOK URL", "CONTENT")
@@ -18,6 +18,13 @@ builder.addEmbed(
     .setTitle("TITLE")
     .setURL("http://YOUR.URL")
     .setDescription("DESCRIPTION")
+    .addField(
+        Field.Builder()
+        .setName("NAME")
+        .setValue("VALUE")
+        .setInline(True)
+        .build()
+    )
     .setColor(0xffffff)
     .setTimestamp("2021-3-21")
     .setFooter(

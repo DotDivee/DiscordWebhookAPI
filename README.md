@@ -3,14 +3,14 @@ A Simple And Easy To Use Webhook API For The Discord Service, Written In Python.
 
 ## Requirements
 - The [Python](https://www.python.org) Programming Language
-- The [Requests](https://github.com/psf/requests) Library For Handling HTTP.
+- The [Requests](https://github.com/psf/requests) Library For Handling HTTP Requests.
 - A Brain.
 
 ## Example
 From [Example](example.py) File.
 
 ```python
-from discord_webhook import DiscordWebhook, Embed, Author, Footer
+from discord_webhook import DiscordWebhook, Embed, Author, Field, Footer
 
 # Initializing The Webhook Builder Object
 builder = DiscordWebhook.Builder("WEBHOOK URL", "CONTENT")
@@ -30,6 +30,13 @@ builder.addEmbed(
     .setTitle("TITLE")
     .setURL("http://YOUR.URL")
     .setDescription("DESCRIPTION")
+    .addField(
+        Field.Builder()
+        .setName("NAME")
+        .setValue("VALUE")
+        .setInline(True)
+        .build()
+    )
     .setColor(0xffffff)
     .setTimestamp("2021-3-21")
     .setFooter(
