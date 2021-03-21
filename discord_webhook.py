@@ -56,6 +56,8 @@ class DiscordWebhook:
                 json["url"] = embed.url
             if embed.description is not None:
                 json["description"] = embed.description
+            if embed.fields is not None:
+                json["fields"] = embed.fields
             if embed.color is not None:
                 json["color"] = embed.color
             if embed.timestamp is not None:
@@ -71,11 +73,12 @@ class DiscordWebhook:
 
 
 class Embed:
-    def __init__(self, author, title, url, description, color, timestamp, footer):
+    def __init__(self, author, title, url, description, fields, color, timestamp, footer):
         self.author = author
         self.title = title
         self.url = url
         self.description = description
+        self.fields = fields
         self.color = color
         self.timestamp = timestamp
         self.footer = footer
@@ -85,6 +88,7 @@ class Embed:
         _title = None
         _url = None
         _description = None
+        _fields = []
         _color = None
         _timestamp = None
         _footer = None
@@ -113,6 +117,18 @@ class Embed:
             self._description = description
             return self
 
+        def addField(self, field):
+            json = {}
+            if field.name is not None:
+                json["name"] = field.name
+            if field.value is not None:
+                json["value"] = field.value
+            if field.inline is not None:
+                json["inline"] = field.inline
+
+            self._fields.append(json)
+            return self
+
         def setColor(self, color):
             self._color = color
             return self
@@ -132,8 +148,8 @@ class Embed:
             return self
 
         def build(self):
-            return Embed(self._author, self._title, self._url, self._description, self._color, self._timestamp,
-                         self._footer)
+            return Embed(self._author, self._title, self._url, self._description, self._fields, self._color,
+                         self._timestamp, self._footer)
 
 
 class Author:
@@ -161,6 +177,37 @@ class Author:
 
         def build(self):
             return Author(self._name, self._url, self.iconURL)
+
+
+class Field:
+    def __init__(self, name, value, inline):
+        self.name = name
+        self.value = value
+        self.inline = inline
+
+    class Builder:
+        _name = None
+        _value = None
+        _inline = None
+
+        def __init__(self, name, value):
+            self._name = name
+            self._value = value
+
+        def setName(self, name):
+            self._name = name
+            return self
+
+        def setValue(self, value):
+            self._value = value
+            return self
+
+        def setInline(self, inline):
+            self._inline = inline
+            return self
+
+        def build(self):
+            return Field(self._name, self._value, self._inline)
 
 
 class Footer:
