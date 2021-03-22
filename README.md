@@ -31,9 +31,8 @@ builder.addEmbed(
     .setURL("http://YOUR.URL")
     .setDescription("DESCRIPTION")
     .addField(
-        Field.Builder()
-        .setName("NAME")
-        .setValue("VALUE")
+        # Initializes A New Field Using The Field Builder Object
+        Field.Builder("NAME", "VALUE")
         .setInline(True)
         .build()
     )
@@ -52,3 +51,7 @@ builder.addEmbed(
 # Converts Builder Object To A DiscordWebhook Object And Runs
 builder.build().send()
 ```
+
+Note That Fields Such As The URL For The Webhook Builder Are Necessary To Pass Through The Init Constructor As The Request Would Work Without Them Being Filled.
+
+Make Sure To **NOT** Leave These Fields Empty Either.

@@ -19,6 +19,7 @@ builder.addEmbed(
     .setURL("http://YOUR.URL")
     .setDescription("DESCRIPTION")
     .addField(
+        # Initializes A New Field Using The Field Builder Object
         Field.Builder()
         .setName("NAME")
         .setValue("VALUE")
