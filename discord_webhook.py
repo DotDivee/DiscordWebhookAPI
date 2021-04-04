@@ -2,11 +2,12 @@ import requests
 
 
 class DiscordWebhook:
-    def __init__(self, url, username, content, embeds):
+    def __init__(self, url, username, content, embeds, tts):
         self.url = url
         self.username = username
         self.content = content
         self.embeds = embeds
+        self.tts = tts
 
     def send(self):
         json = {}
@@ -16,6 +17,8 @@ class DiscordWebhook:
             json["content"] = self.content
         if self.embeds:
             json["embeds"] = self.embeds
+        if self.tts is not None:
+            json["tts"] = self.tts
 
         request = requests.post(self.url, json=json)
 
@@ -29,24 +32,25 @@ class DiscordWebhook:
         _username = None
         _content = None
         _embeds = []
+        _tts = None
 
         def __init__(self, url, content):
             self._url = url
             self._content = content
 
-        def setURL(self, url):
+        def set_url(self, url):
             self._url = url
             return self
 
-        def setUsername(self, username):
+        def set_username(self, username):
             self._username = username
             return self
 
-        def setContent(self, content):
+        def set_content(self, content):
             self._content = content
             return self
 
-        def addEmbed(self, embed):
+        def add_embed(self, embed):
             json = {}
             if embed.author is not None:
                 json["author"] = embed.author
@@ -68,8 +72,12 @@ class DiscordWebhook:
             self._embeds.append(json)
             return self
 
+        def set_tts(self, tts):
+            self._tts = tts
+            return self
+
         def build(self):
-            return DiscordWebhook(self._url, self._username, self._content, self._embeds)
+            return DiscordWebhook(self._url, self._username, self._content, self._embeds, self._tts)
 
 
 class Embed:
@@ -93,31 +101,31 @@ class Embed:
         _timestamp = None
         _footer = None
 
-        def setAuthor(self, author):
+        def set_author(self, author):
             json = {}
             if author.name is not None:
                 json["name"] = author.name
             if author.url is not None:
                 json["url"] = author.url
-            if author.iconURL is not None:
-                json["icon_url"] = author.iconURL
+            if author.icon_url is not None:
+                json["icon_url"] = author.icon_url
 
             self._author = json
             return self
 
-        def setTitle(self, title):
+        def set_title(self, title):
             self._title = title
             return self
 
-        def setURL(self, url):
+        def set_url(self, url):
             self._url = url
             return self
 
-        def setDescription(self, description):
+        def set_description(self, description):
             self._description = description
             return self
 
-        def addField(self, field):
+        def add_field(self, field):
             json = {}
             if field.name is not None:
                 json["name"] = field.name
@@ -129,20 +137,20 @@ class Embed:
             self._fields.append(json)
             return self
 
-        def setColor(self, color):
+        def set_color(self, color):
             self._color = color
             return self
 
-        def setTimestamp(self, timestamp):
+        def set_timestamp(self, timestamp):
             self._timestamp = timestamp
             return self
 
-        def setFooter(self, footer):
+        def set_footer(self, footer):
             json = {}
             if footer.text is not None:
                 json["text"] = footer.text
-            if footer.iconURL is not None:
-                json["icon_url"] = footer.iconURL
+            if footer.icon_url is not None:
+                json["icon_url"] = footer.icon_url
 
             self._footer = json
             return self
@@ -156,27 +164,27 @@ class Author:
     def __init__(self, name, url, iconURL):
         self.name = name
         self.url = url
-        self.iconURL = iconURL
+        self.icon_url = iconURL
 
     class Builder:
         _name = None
         _url = None
-        iconURL = None
+        _icon_url = None
 
-        def setName(self, name):
+        def set_name(self, name):
             self._name = name
             return self
 
-        def setURL(self, url):
+        def set_url(self, url):
             self._url = url
             return self
 
-        def setIconURL(self, iconURL):
-            self.iconURL = iconURL
+        def set_icon_url(self, iconURL):
+            self._icon_url = iconURL
             return self
 
         def build(self):
-            return Author(self._name, self._url, self.iconURL)
+            return Author(self._name, self._url, self._icon_url)
 
 
 class Field:
@@ -194,15 +202,15 @@ class Field:
             self._name = name
             self._value = value
 
-        def setName(self, name):
+        def set_name(self, name):
             self._name = name
             return self
 
-        def setValue(self, value):
+        def set_value(self, value):
             self._value = value
             return self
 
-        def setInline(self, inline):
+        def set_inline(self, inline):
             self._inline = inline
             return self
 
@@ -211,21 +219,21 @@ class Field:
 
 
 class Footer:
-    def __init__(self, text, iconURL):
+    def __init__(self, text, icon_url):
         self.text = text
-        self.iconURL = iconURL
+        self.icon_url = icon_url
 
     class Builder:
         _text = None
-        _iconURL = None
+        _icon_url = None
 
-        def setText(self, text):
+        def set_text(self, text):
             self._text = text
             return self
 
-        def setIconURL(self, iconURL):
-            self._iconURL = iconURL
+        def set_icon_url(self, icon_url):
+            self._icon_url = icon_url
             return self
 
         def build(self):
-            return Footer(self._text, self._iconURL)
+            return Footer(self._text, self._icon_url)
