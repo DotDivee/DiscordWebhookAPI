@@ -20,12 +20,7 @@ class DiscordWebhook:
         if self.tts is not None:
             json["tts"] = self.tts
 
-        request = requests.post(self.url, json=json)
-
-        try:
-            request.raise_for_status()
-        except requests.exceptions.HTTPError as exception:
-            print(exception)
+        requests.post(self.url, json=json)
 
     class Builder:
         _url = None

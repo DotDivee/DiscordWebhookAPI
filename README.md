@@ -2,7 +2,7 @@
 A Simple And Easy To Use Webhook API For The Discord Service, Written In Python.
 
 ## Requirements
-- The [Python](https://www.python.org) Programming Language
+- The [Python](https://www.python.org) Programming Language.
 - The [Requests](https://github.com/psf/requests) Library For Handling HTTP Requests.
 - A Brain.
 
@@ -33,9 +33,7 @@ builder.add_embed(
     .set_description("DESCRIPTION")
     .add_field(
         # Initializes A New Field Using The Field Builder Object
-        Field.Builder()
-        .set_name("NAME")
-        .set_value("VALUE")
+        Field.Builder("NAME", "VALUE")
         .set_inline(True)
         .build()
     )
