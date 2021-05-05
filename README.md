@@ -12,7 +12,7 @@ A Simple And Easy To Use Webhook API For The Discord Service, Written In Python.
 You Should Start Off By Importing The Discord Webhook Module Along With Any Elements You Will Need.
 
 ```python
-from discord_webhook import DiscordWebhook, Embed, Author, Field, Footer
+from discord_webhook import *
 ```
 
 ### Initializing The Webhook
