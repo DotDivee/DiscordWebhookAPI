@@ -6,54 +6,93 @@ A Simple And Easy To Use Webhook API For The Discord Service, Written In Python.
 - The [Requests](https://github.com/psf/requests) Library For Handling HTTP Requests.
 - A Brain.
 
-## Example
-From [Example](example.py) File.
+## Examples
+
+### Importing
+You Should Start Off By Importing The Discord Webhook Module Along With Any Elements You Will Need.
 
 ```python
 from discord_webhook import DiscordWebhook, Embed, Author, Field, Footer
-
-# Initializing The Webhook Builder Object
-builder = DiscordWebhook.Builder("WEBHOOK URL", "CONTENT")
-builder.set_username("USERNAME")
-builder.set_url("http://YOUR.URL")
-builder.set_tts(True)
-
-# Adds A New Embed Using The Embed Builder Object
-builder.add_embed(
-    Embed.Builder()
-    .set_author(
-        # Initializes A New Author Using The Author Builder Object
-        Author.Builder()
-        .set_name("NAME")
-        .set_url("http://YOUR.URL")
-        .set_icon_url("http://YOUR.ICONURL")
-    )
-    .set_title("TITLE")
-    .set_url("http://YOUR.URL")
-    .set_description("DESCRIPTION")
-    .add_field(
-        # Initializes A New Field Using The Field Builder Object
-        Field.Builder("NAME", "VALUE")
-        .set_inline(True)
-        .build()
-    )
-    .set_color(0xffffff)
-    .set_timestamp("2021-3-21")
-    .set_footer(
-        # Initializes A New Footer Using The Footer Builder Object
-        Footer.Builder()
-        .set_text("TEXT")
-        .set_icon_url("http://YOUR.ICONURL")
-        .build()
-    )
-    .build()
-)
-
-# Converts Builder Object To A DiscordWebhook Object And Runs
-builder.build().send()
-
 ```
 
-Note That Fields Such As The URL For The Webhook Builder Are Necessary To Pass Through The Init Constructor As The Request Would Work Without Them Being Filled.
+### Initializing The Webhook
+Initialize Your Discord Webhook Via The Discord Webhook Builder Object And Assign It To A Variable.
 
-Make Sure To **NOT** Leave These Fields Empty Either.
+Paste In Your Webhook URL In The Constructor.
+
+*This URL Is Just For Demonstration Purposes.*
+
+```python
+from discord_webhook import *
+
+# Initialize Webhook
+webhook = DiscordWebhook.Builder("https://your-webhook.url")
+```
+
+### Customizing Fields
+Start By Perhaps Setting The Username Or Content Of Your Webhook.
+
+```python
+from discord_webhook import *
+
+# Initialize Webhook
+webhook = DiscordWebhook.Builder("https://your-webhook.url")
+
+# Set Fields
+webhook.set_username("Username")
+webhook.set_content("Content")
+```
+
+### Adding An Embed
+Embeds Are Useful For Displaying Large Amounts Of Information.
+
+You Can Initialize One Using The Embed Builder Object.
+
+Here I Change The Author Of The Embed Using The Author Builder Object.
+
+**Make Sure To Call The Build Function Otherwise It Will Not Work.**
+
+```python
+from discord_webhook import *
+
+# Initialize Embed
+embed = Embed.Builder()
+
+# Make Sure To Call Build On Any Builder Classes
+embed.set_author(
+    Author.Builder()
+        .set_name("Name")
+        .build()
+)
+``` 
+
+Then Call The Add Embed Function On The Webhook Builder Class.
+
+```python
+from discord_webhook import *
+
+# Initialize Webhook
+webhook = DiscordWebhook.Builder("https://your-webhook.url")
+
+# Set Fields
+webhook.set_username("Username")
+webhook.set_content("Content")
+
+# Initialize Embed
+embed = Embed.Builder()
+
+# Make Sure To Call Build On Any Builder Classes
+embed.set_author(
+    Author.Builder()
+        .set_name("Name")
+        .build()
+)
+
+# Add Embed
+webhook.add_embed(
+    embed.build()
+)
+``` 
+
+### Sending
+Finally, To Send Your Webhook, Call The Build Function On Your Webhook Builder And Then The Send Function On The Webhook.

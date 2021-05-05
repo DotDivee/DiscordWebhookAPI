@@ -29,13 +29,8 @@ class DiscordWebhook:
         _embeds = []
         _tts = None
 
-        def __init__(self, url, content):
+        def __init__(self, url):
             self._url = url
-            self._content = content
-
-        def set_url(self, url):
-            self._url = url
-            return self
 
         def set_username(self, username):
             self._username = username
@@ -192,10 +187,6 @@ class Field:
         _name = None
         _value = None
         _inline = None
-
-        def __init__(self, name, value):
-            self._name = name
-            self._value = value
 
         def set_name(self, name):
             self._name = name
