@@ -95,4 +95,6 @@ webhook.add_embed(
 ``` 
 
 ### Sending
-Finally, To Send Your Webhook, Call The Build Function On Your Webhook Builder And Then The Send Function On The Webhook.
+Finally, To Send Your Webhook Message, Call The Build Function On Your Webhook Builder And Then The Send Function On The Webhook.
+
+If It Doesn't Work Check If You Have Inputted Your URLs Correctly And Check For Required Fields (For Example The Content Field In The Webhook Is Required).
