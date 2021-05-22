@@ -262,8 +262,3 @@ class DiscordWebhook:
 
         def build(self):
             return DiscordWebhook(self._embeds, self._url, self._username, self._content, self._tts)
-
-a = DiscordWebhook.Builder("https://discord.com/api/webhooks/831978192004055050/kjey4_O7OKXc978bLgFcGEcDePir0oQPdU-zoChNremidBinalgZWNiVv7sNrfwj8gV1")
-a.set_content("l")
-a.add_embed(Embed.Builder().set_title("Pee pee").build())
-a.build().send()
