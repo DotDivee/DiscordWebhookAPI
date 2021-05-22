@@ -32,7 +32,7 @@ webhook = DiscordWebhook("https://your-webhook.url")
 ```
 
 ### Customizing Fields
-Start By Settings Some Fields To Make It Fit Your Needs.
+Start By Setting Some Fields To Make It Fit Your Needs.
 
 ```python
 from discord_webhook_api import *
@@ -48,11 +48,11 @@ webhook.set_tts(True)
 ```
 
 ### Adding An Embed
-Embeds Are Useful For Displaying Large Amounts Of Information Or To Make Your Webhook Look Nice.
+Embeds Are Useful For Displaying Large Amounts Of Information Or For Making Your Webhooks Look Nice.
 
 You Can Initialize One By Creating And Instance Of The **Embed** Object.
 
-Unlike The **DiscordWebhook** Object, The **Embed** Object Doesn't Take Any Arguments. In Fact, The **DiscordWebhook** Object Is The Only Object That Takes Any Arguments.
+Unlike The **DiscordWebhook** Object, The **Embed** Object Doesn't Take Any Arguments. In Fact, The **DiscordWebhook** Object Is The Only Object That Takes Any Arguments (In Its Constructor).
 
 ```python
 from discord_webhook_api import *
@@ -91,4 +91,7 @@ webhook.add_embed(embed)
 ### Sending
 Finally, To Send Your Webhook Message, Call The Send Function On The Webhook.
 
-If It Doesn't Work Check If You Have Inputted Your URLs Correctly Or If You Haven't Missed Any Required Fields.
+### If It Doesn't Work
+- Check If You Have Inputted Your URLs Correctly.
+- Check If You Haven't Missed Any Required Fields.
+- Submit An Issue (If It Still Doesn't Work).
