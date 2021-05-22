@@ -12,7 +12,7 @@ A Simple And Easy To Use Webhook API For The Discord Service, Written In Python.
 You Should Start Off By Importing The Discord Webhook Module Along With Any Elements You Will Need.
 
 ```python
-from discord_webhook import *
+from discord_webhook_api import *
 ```
 
 ### Initializing The Webhook
@@ -23,7 +23,7 @@ Paste In Your Webhook URL In The Constructor.
 *This URL Is Just For Demonstration Purposes.*
 
 ```python
-from discord_webhook import *
+from discord_webhook_api import *
 
 # Initialize Webhook
 webhook = DiscordWebhook.Builder("https://your-webhook.url")
@@ -33,7 +33,7 @@ webhook = DiscordWebhook.Builder("https://your-webhook.url")
 Start By Perhaps Setting The Username Or Content Of Your Webhook.
 
 ```python
-from discord_webhook import *
+from discord_webhook_api import *
 
 # Initialize Webhook
 webhook = DiscordWebhook.Builder("https://your-webhook.url")
@@ -53,7 +53,7 @@ Here I Change The Author Of The Embed Using The Author Builder Object.
 **Make Sure To Call The Build Function Otherwise It Will Not Work.**
 
 ```python
-from discord_webhook import *
+from discord_webhook_api import *
 
 # Initialize Embed
 embed = Embed.Builder()
@@ -69,7 +69,7 @@ embed.set_author(
 Then Call The Add Embed Function On The Webhook Builder Class.
 
 ```python
-from discord_webhook import *
+from discord_webhook_api import *
 
 # Initialize Webhook
 webhook = DiscordWebhook.Builder("https://your-webhook.url")
