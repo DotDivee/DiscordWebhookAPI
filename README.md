@@ -6,19 +6,21 @@ A Simple And Easy To Use Webhook API For The Discord Service, Written In Python.
 - The [Requests](https://github.com/psf/requests) Library For Handling HTTP Requests.
 - A Brain.
 
-## Examples
+## Tutorial
 
 ### Importing
 You Should Start Off By Importing The Discord Webhook Module Along With Any Elements You Will Need.
+
+It's Best If You Just Import Everything Right Off The Bat Which Will Save You Time.
 
 ```python
 from discord_webhook_api import *
 ```
 
 ### Initializing The Webhook
-Initialize Your Discord Webhook Via The Discord Webhook Builder Object And Assign It To A Variable.
+Initialize Your Webhook By Creating An Instance Of The **DiscordWebhook** Object.
 
-Paste In Your Webhook URL In The Constructor.
+Paste Your Webhook URL In The Constructor.
 
 *This URL Is Just For Demonstration Purposes.*
 
@@ -26,44 +28,41 @@ Paste In Your Webhook URL In The Constructor.
 from discord_webhook_api import *
 
 # Initialize Webhook
-webhook = DiscordWebhook.Builder("https://your-webhook.url")
+webhook = DiscordWebhook("https://your-webhook.url")
 ```
 
 ### Customizing Fields
-Start By Perhaps Setting The Username Or Content Of Your Webhook.
+Start By Settings Some Fields To Make It Fit Your Needs.
 
 ```python
 from discord_webhook_api import *
 
 # Initialize Webhook
-webhook = DiscordWebhook.Builder("https://your-webhook.url")
+webhook = DiscordWebhook("https://your-webhook.url")
 
 # Set Fields
+webhook.set_avatar_url("https://your-avatar.url")
 webhook.set_username("Username")
 webhook.set_content("Content")
+webhook.set_tts(True)
 ```
 
 ### Adding An Embed
-Embeds Are Useful For Displaying Large Amounts Of Information.
+Embeds Are Useful For Displaying Large Amounts Of Information Or To Make Your Webhook Look Nice.
 
-You Can Initialize One Using The Embed Builder Object.
+You Can Initialize One By Creating And Instance Of The **Embed** Object.
 
-Here I Change The Author Of The Embed Using The Author Builder Object.
-
-**Make Sure To Call The Build Function Otherwise It Will Not Work.**
+Unlike The **DiscordWebhook** Object, The **Embed** Object Doesn't Take Any Arguments. In Fact, The **DiscordWebhook** Object Is The Only Object That Takes Any Arguments.
 
 ```python
 from discord_webhook_api import *
 
 # Initialize Embed
-embed = Embed.Builder()
+embed = Embed()
 
-# Make Sure To Call Build On Any Builder Classes
-embed.set_author(
-    Author.Builder()
-        .set_name("Name")
-        .build()
-)
+# Set Embed Fields
+embed.set_title("Title")
+embed.set_description("Description")
 ``` 
 
 Then Call The Add Embed Function On The Webhook Builder Class.
@@ -71,30 +70,25 @@ Then Call The Add Embed Function On The Webhook Builder Class.
 ```python
 from discord_webhook_api import *
 
+# Initialize Embed
+embed = Embed()
+
+# Set Embed Fields
+embed.set_title("Title")
+embed.set_description("Description")
+
 # Initialize Webhook
-webhook = DiscordWebhook.Builder("https://your-webhook.url")
+webhook = DiscordWebhook("https://your-webhook.url")
 
 # Set Fields
 webhook.set_username("Username")
 webhook.set_content("Content")
 
-# Initialize Embed
-embed = Embed.Builder()
-
-# Make Sure To Call Build On Any Builder Classes
-embed.set_author(
-    Author.Builder()
-        .set_name("Name")
-        .build()
-)
-
 # Add Embed
-webhook.add_embed(
-    embed.build()
-)
+webhook.add_embed(embed)
 ``` 
 
 ### Sending
-Finally, To Send Your Webhook Message, Call The Build Function On Your Webhook Builder And Then The Send Function On The Webhook.
+Finally, To Send Your Webhook Message, Call The Send Function On The Webhook.
 
-If It Doesn't Work Check If You Have Inputted Your URLs Correctly And Check For Required Fields (For Example The Content Field In The Webhook Is Required).
+If It Doesn't Work Check If You Have Inputted Your URLs Correctly Or If You Haven't Missed Any Required Fields.
